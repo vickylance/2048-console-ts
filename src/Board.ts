@@ -80,10 +80,6 @@ export default class Board {
   }
 
   public renderBoard() {
-    clear();
-    console.log(
-      chalk.yellow(figlet.textSync("2048", { horizontalLayout: "full" }))
-    );
     this.boardRender = table([], this.grid, [], this.renderOptions);
     console.log(this.boardRender.render());
   }
