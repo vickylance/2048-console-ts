@@ -85,6 +85,13 @@ export default class Board {
   }
 
   public renderInfoPanel(endGame: boolean) {
+    console.log(`
+===============================================
+${chalk.yellow("Controls")}: use arrow keys ${chalk.yellow(
+      "(↑,↓,←,→)"
+    )} or ${chalk.yellow("(W,A,S,D)")}
+===============================================
+    `);
     console.log(
       `HIGH SCORE: ${chalk.black.bgGreenBright(this._highScore.toString())}\n`
     );
@@ -103,7 +110,7 @@ export default class Board {
       );
       if (!endGame) console.log(`\nYOU CAN CONTINUE TO PLAY THE GAME.\n`);
     }
-    console.log("\nPress Ctrl + C to exit");
+    console.log(`\nPress ${chalk.yellow("Ctrl + C")} to exit`);
   }
 
   /**
@@ -127,8 +134,7 @@ export default class Board {
       // choose a random empty cell
       let spot = emptyCells[Math.floor(Math.random() * emptyCells.length)];
       let r = Math.random();
-      this.grid[spot.x][spot.y] = r > 0.4 ? 256 : 512;
-      // this.grid_new[spot.x][spot.y] = 1;
+      this.grid[spot.x][spot.y] = r > 0.3 ? 2 : 4;
     }
   }
 
@@ -241,18 +247,22 @@ export default class Board {
     let played = true;
     switch (keyCode) {
       case "right":
+      case "d":
         break;
       case "left":
+      case "a":
         this.grid = this.flipGrid(this.grid);
         flipped = true;
         break;
       case "up":
+      case "w":
         this.grid = this.rotateGrid(this.grid);
         this.grid = this.flipGrid(this.grid);
         rotated = true;
         flipped = true;
         break;
       case "down":
+      case "s":
         this.grid = this.rotateGrid(this.grid);
         rotated = true;
         break;

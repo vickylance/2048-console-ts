@@ -45,6 +45,10 @@ const runGame = (boardDetails: any) => {
           case "right":
           case "up":
           case "down":
+          case "w":
+          case "a":
+          case "s":
+          case "d":
             board.slide(key.name);
             clear();
             renderTitle();
