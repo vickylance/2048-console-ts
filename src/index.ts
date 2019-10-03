@@ -1,8 +1,8 @@
-import Board, { SlideDirection } from "./src/Board";
+import Board, { SlideDirection } from "./Board";
 import * as tty from "tty";
 import keypress from "keypress";
 import clear from "clear";
-import askBoardQuestions from "./src/Inquire";
+import askBoardQuestions from "./Inquire";
 import chalk from "chalk";
 import figlet from "figlet";
 
