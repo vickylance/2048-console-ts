@@ -107,7 +107,7 @@ export default class Board {
     };
     this.grid = this.blankGrid(this.size, this.size);
     this._score = 0;
-    this._highScore = config.get("2048_high_score") || 0;
+    this._highScore = config.get(`2048_high_score_${this.multiplier}`) || 0;
   }
 
   /**
@@ -221,8 +221,8 @@ ${chalk.yellow("Controls")}: use arrow keys ${chalk.yellow(
   private manageScore(score: number) {
     this._score += score;
     if (this._highScore < this._score) {
-      config.set("2048_high_score", this._score);
-      this._highScore = config.get("2048_high_score");
+      config.set(`2048_high_score_${this.multiplier}`, this._score);
+      this._highScore = config.get(`2048_high_score_${this.multiplier}`);
     }
   }
 
@@ -317,7 +317,7 @@ ${chalk.yellow("Controls")}: use arrow keys ${chalk.yellow(
   public isGameWon(): boolean {
     for (let i = 0; i < this.grid.length; i++) {
       for (let j = 0; j < this.grid[i].length; j++) {
-        if (this.grid[i][j] >= 2048) {
+        if (this.grid[i][j] >= 1024 * this.multiplier) {
           return true;
         }
       }
