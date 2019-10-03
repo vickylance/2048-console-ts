@@ -2,6 +2,8 @@
 
 This is a 2048 Game written completely in typescript and the entire game can be played in the console.
 
+![Screenshot](./sample.png)
+
 ## Features
 
 1. You can choose the size of the board.
