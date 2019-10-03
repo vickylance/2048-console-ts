@@ -210,15 +210,19 @@ ${chalk.yellow("Controls")}: use arrow keys ${chalk.yellow(
       let b = row[i - 1];
       if (a === b) {
         row[i] = a + b;
-        this._score += row[i];
-        if (this._highScore < this._score) {
-          config.set("2048_high_score", this._score);
-          this._highScore = config.get("2048_high_score");
-        }
+        this.manageScore(row[i]);
         row[i - 1] = 0;
       }
     }
     return row;
+  }
+
+  private manageScore(score: number) {
+    this._score += score;
+    if (this._highScore < this._score) {
+      config.set("2048_high_score", this._score);
+      this._highScore = config.get("2048_high_score");
+    }
   }
 
   /**
