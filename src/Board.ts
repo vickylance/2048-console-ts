@@ -1,7 +1,5 @@
 import chalk from "chalk";
 import table from "tty-table";
-import figlet from "figlet";
-import clear from "clear";
 import configstore from "configstore";
 import packageJson from "../package.json";
 import { differenceWith, isEqual, cloneDeep } from "lodash";
@@ -25,6 +23,7 @@ export default class Board {
   private grid: number[][];
   private boardRender!: any;
   private size: number;
+  private multiplier: number;
   private renderOptions?: object;
   private _score: number;
   private _highScore: number;
@@ -53,44 +52,44 @@ export default class Board {
    * Takes care of the coloring of the cells in the grid depending upon the value
    *
    * @private
-   * @static
    * @memberof Board
    */
-  private static colorFormatter = (val: number) => {
+  private colorFormatter = (val: number) => {
     switch (val) {
-      case 0:
+      case 0 * this.multiplier:
         return chalk.black.bgBlackBright("");
-      case 2:
+      case 1 * this.multiplier:
         return chalk.black.bgGreenBright(val.toString());
-      case 4:
+      case 2 * this.multiplier:
         return chalk.black.bgGreen(val.toString());
-      case 8:
+      case 4 * this.multiplier:
         return chalk.white.bgBlueBright(val.toString());
-      case 16:
+      case 8 * this.multiplier:
         return chalk.white.bgBlue(val.toString());
-      case 32:
+      case 16 * this.multiplier:
         return chalk.black.bgCyanBright(val.toString());
-      case 64:
+      case 32 * this.multiplier:
         return chalk.black.bgCyan(val.toString());
-      case 128:
+      case 64 * this.multiplier:
         return chalk.black.bgMagentaBright(val.toString());
-      case 256:
+      case 128 * this.multiplier:
         return chalk.black.bgMagenta(val.toString());
-      case 512:
+      case 256 * this.multiplier:
         return chalk.black.bgYellowBright(val.toString());
-      case 1024:
+      case 512 * this.multiplier:
         return chalk.black.bgYellow(val.toString());
-      case 2048:
+      case 1024 * this.multiplier:
         return chalk.white.bgRedBright(val.toString());
-      case 4096:
+      case 2048 * this.multiplier:
         return chalk.white.bgRed(val.toString());
       default:
         return chalk.black.bgWhite(val.toString());
     }
   };
 
-  constructor(size = 4) {
+  constructor(size = 4, multiplier = 2) {
     this.size = size;
+    this.multiplier = multiplier;
     this.renderOptions = {
       width: 7,
       borderColor: "blue",
@@ -104,7 +103,7 @@ export default class Board {
           { v: "║", l: "╚", j: "╩", h: "═", r: "╝" }
         ]
       },
-      formatter: Board.colorFormatter
+      formatter: this.colorFormatter
     };
     this.grid = this.blankGrid(this.size, this.size);
     this._score = 0;
@@ -177,7 +176,9 @@ ${chalk.yellow("Controls")}: use arrow keys ${chalk.yellow(
       // choose a random empty cell
       let spot = emptyCells[Math.floor(Math.random() * emptyCells.length)];
       let r = Math.random();
-      this.grid[spot.x][spot.y] = r > 0.3 ? 256 : 512;
+      console.log(this.multiplier);
+      this.grid[spot.x][spot.y] =
+        r > 0.3 ? 1 * this.multiplier : 2 * this.multiplier;
     }
   }
 

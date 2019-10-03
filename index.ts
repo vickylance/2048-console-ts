@@ -25,7 +25,7 @@ const runQuery = async () => {
 };
 
 const runGame = (boardDetails: any) => {
-  let board = new Board(boardDetails.boardSize);
+  let board = new Board(boardDetails.boardSize, boardDetails.multiple);
   let endGame = false;
   board.addNumber();
   board.addNumber();
