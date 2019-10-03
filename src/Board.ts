@@ -15,6 +15,12 @@ export enum SlideDirection {
   Down
 }
 
+/**
+ * The Board class takes care of spawning a new Game and managing the game state.
+ *
+ * @export
+ * @class Board
+ */
 export default class Board {
   private grid: number[][];
   private boardRender!: any;
@@ -105,6 +111,11 @@ export default class Board {
     this._highScore = config.get("2048_high_score") || 0;
   }
 
+  /**
+   *
+   *
+   * @memberof Board
+   */
   public renderBoard() {
     this.boardRender = table([], this.grid, [], this.renderOptions);
     console.log(this.boardRender.render());
