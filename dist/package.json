@@ -1,0 +1,43 @@
+{
+    "name": "2048",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "ts-node ./src/index.ts",
+        "dev": "tsnd --respawn ./src/index.ts",
+        "build": "tsc",
+        "test": "mocha -r ts-node/register tests/**/*.spec.ts"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/chai": "^4.2.3",
+        "@types/clear": "^0.1.0",
+        "@types/configstore": "^4.0.0",
+        "@types/figlet": "^1.2.0",
+        "@types/inquirer": "^6.5.0",
+        "@types/lodash-es": "^4.17.3",
+        "@types/mocha": "^5.2.7",
+        "@types/node": "^12.7.9",
+        "chai": "^4.2.0",
+        "mocha": "^6.2.1",
+        "ts-node": "^8.4.1",
+        "ts-node-dev": "^1.0.0-pre.43",
+        "tslint": "^5.20.0",
+        "typescript": "^3.6.3"
+    },
+    "dependencies": {
+        "chalk": "^2.4.2",
+        "clear": "^0.1.0",
+        "configstore": "^5.0.0",
+        "enquirer": "^2.3.2",
+        "figlet": "^1.2.4",
+        "inquirer": "^7.0.0",
+        "keypress": "^0.2.1",
+        "lodash": "^4.17.15",
+        "lodash-es": "^4.17.15",
+        "tty-table": "^2.7.6"
+    }
+}
