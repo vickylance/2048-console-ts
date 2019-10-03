@@ -1,4 +1,4 @@
-import Board from "./src/Board";
+import Board, { SlideDirection } from "./src/Board";
 import * as tty from "tty";
 import keypress from "keypress";
 import clear from "clear";
@@ -41,21 +41,27 @@ const runGame = (boardDetails: any) => {
     process.stdin.on("keypress", function(ch: any, key: any) {
       if (key && !endGame) {
         switch (key.name) {
-          case "left":
           case "right":
-          case "up":
-          case "down":
-          case "w":
-          case "a":
-          case "s":
           case "d":
-            board.slide(key.name);
-            clear();
-            renderTitle();
-            board.renderBoard();
-            board.renderInfoPanel(endGame);
+            board.slide(SlideDirection.Right);
+            break;
+          case "left":
+          case "a":
+            board.slide(SlideDirection.Left);
+            break;
+          case "up":
+          case "w":
+            board.slide(SlideDirection.Up);
+            break;
+          case "down":
+          case "s":
+            board.slide(SlideDirection.Down);
             break;
         }
+        clear();
+        renderTitle();
+        board.renderBoard();
+        board.renderInfoPanel(endGame);
       }
       if (key && key.ctrl && key.name == "c") {
         console.log("EXIT");
